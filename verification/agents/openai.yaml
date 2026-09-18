@@ -1,0 +1,3 @@
+interface:
+  display_name: "Verification"
+  short_description: "证据先于断言，无法验证就如实说"

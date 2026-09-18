@@ -1,0 +1,3 @@
+interface:
+  display_name: "Debugging"
+  short_description: "先根因后修复的四阶段调试"

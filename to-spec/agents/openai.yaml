@@ -1,0 +1,5 @@
+interface:
+  display_name: "To Spec"
+  short_description: "把谈定的内容固化成设计文档"
+policy:
+  allow_implicit_invocation: false

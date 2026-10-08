@@ -1,5 +1,5 @@
 interface:
-  display_name: "Implement"
+  display_name: "实施"
   short_description: "按实施计划逐任务推进，不提交"
 policy:
   allow_implicit_invocation: false

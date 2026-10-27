@@ -1,5 +1,3 @@
 interface:
   display_name: "写实施计划"
   short_description: "把设计文档变成带状态的实施计划"
-policy:
-  allow_implicit_invocation: false

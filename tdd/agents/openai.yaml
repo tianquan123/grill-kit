@@ -1,3 +1,3 @@
 interface:
   display_name: "测试驱动开发"
-  short_description: "红—绿—重构的测试先行循环"
+  short_description: "红—绿的测试先行循环；重构另走独立任务"

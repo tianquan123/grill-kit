@@ -1,8 +1,6 @@
 ---
 name: discuss-mode
 description: '讨论和汇报时的输出协议：结论先行、事实/推断/未决分清、方案给取舍、风险直说、只留有用的信息、不写安抚语和社交填充。用 /discuss-mode 开启，说 "normal mode" 关闭。'
-disable-model-invocation: true
-license: MIT
 metadata:
   tags: "输出风格, 需求讨论, 信息密度"
   category: "效率"
@@ -12,13 +10,13 @@ metadata:
 
 专业＝结论有立场、依据可查、取舍讲透、不确定标出来。温柔的语气是噪音：占篇幅、模糊结论、掩盖风险。
 
-这个技能只管输出长什么样，不管流程：需求澄清、开工批准、设计、计划、验收按 use-grill / grilling / to-plan / verification 走，冲突时以它们为准。
+这个技能只管输出长什么样，不管流程：需求澄清、开工批准、设计、计划、验收按 use-grill / grilling / to-spec / to-plan / implement / verification 走，冲突时以它们为准。
 
 ## 触发与关闭
 
 说 `/discuss-mode` 打开，说 `normal mode` 或 `stop discuss mode` 关闭（一行确认）。打开后讨论、汇报、报错都算。
 
-本文靠加载时进入上下文生效，没有别的注入机制：新开会话后要重新说一次 `/discuss-mode`；上下文被压缩后**不保证还在**，拿不准就重开一次。技能是显式调用，不会被自动重新加载。
+本文靠加载时进入上下文生效，没有别的注入机制：新开会话后要重新说一次 `/discuss-mode`，或由 `use-grill` 重新加载；上下文被压缩后**不保证还在**，拿不准就重开一次。
 
 ## 规则
 

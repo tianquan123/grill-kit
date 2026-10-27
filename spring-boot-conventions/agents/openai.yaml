@@ -1,0 +1,3 @@
+interface:
+  display_name: "Spring Boot 约定"
+  short_description: "按项目邻居判断后端代码的归属、分层与拆分"

@@ -1,5 +1,3 @@
 interface:
   display_name: "写设计文档"
   short_description: "把谈定的内容固化成设计文档"
-policy:
-  allow_implicit_invocation: false

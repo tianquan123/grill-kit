@@ -2,6 +2,3 @@ interface:
   display_name: "讨论模式"
   short_description: "讨论与汇报的输出协议"
   default_prompt: "使用 $discuss-mode 让这次回复结论先行、取舍讲透、不写安抚语。"
-
-policy:
-  allow_implicit_invocation: false

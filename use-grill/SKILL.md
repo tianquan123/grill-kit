@@ -102,7 +102,7 @@ description: 任何要动手改代码的工作开始前使用：先定档（试�
 8. `to-plan`——出**实施计划**
 9. **关卡 3：用户对计划签字**
 10. 先按「写代码前的加载」加载 `ponytail`，再用 `implement`——逐任务执行；此后编排权交给计划文件
-11. `verification`——先拿证据；再 `code-review`——两个维度的评审
+11. `verification`——先拿证据；再 `code-review`——三个维度的评审
 
 ## 档位只能升，不能降
 
@@ -129,7 +129,7 @@ description: 任何要动手改代码的工作开始前使用：先定档（试�
 | 局部 | 轻量 grilling → 短设计 → 同意 → 实现（tdd）→ verification |
 | 架构 | grilling → 总结意图 → 批准 → domain-modeling → to-spec → 评审 → to-plan → 签字 → implement → verification → code-review |
 
-局部档与架构档都要在写设计前、进入实现前，分别按「写代码前的加载」加载配套技能；局部档和试验档不跑 `code-review`；两个维度评审是架构档的收尾。
+局部档与架构档都要在写设计前、进入实现前，分别按「写代码前的加载」加载配套技能；局部档和试验档不跑 `code-review`；三条线评审是架构档的收尾。
 
 **进入 `implement` 之后，编排放手**：接下来做哪个任务，由实施计划文件承载。
 

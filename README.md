@@ -8,7 +8,7 @@
 
 ```text
 use-grill ──► grilling ──► to-spec ──► to-plan ──► implement ──► verification ──► code-review
-   定档          拷问        设计文档      实施计划      逐任务实施        证据           两个维度
+   定档          拷问        设计文档      实施计划      逐任务实施        证据           三条线
 ```
 
 局部档与试验档不跑完整主链，链长见 [use-grill](use-grill/SKILL.md) 的「编排」表。
@@ -57,7 +57,7 @@ cp -r grill-kit/{use-grill,grilling,discuss-mode,to-spec,to-plan,implement,ponyt
 【命中 grilling】把这棵决策树一批一批地问完当前可问的问题，一轮内问完当前可问的全部问题，每题附推荐答案。
 
 > 从 main 起评审我这个分支
-【命中 code-review】Standards 与 Spec 各跑一个并行子代理，最后并排汇报。
+【命中 code-review】按深度跑 Standards、Spec、质审中的两或三条线，各配一个并行子代理，最后并排汇报。
 
 > 测试挂了，你看看怎么修
 【命中 debugging】先找根因，根因没落地之前不给修复方案。
@@ -82,7 +82,7 @@ cp -r grill-kit/{use-grill,grilling,discuss-mode,to-spec,to-plan,implement,ponyt
 | [implement](implement/SKILL.md) | 按实施计划逐任务实现：当前分支、当前会话、不提交，进度就地更新在计划文件里 | 计划已签字，开始写代码时 |
 | [verification](verification/SKILL.md) | 证据先于断言：没有本次实际跑出来的证据，不许说完成 / 修好 / 通过 | 声称完成之前；验证条件不允许时走显式降级路径 |
 | [constraints](constraints/SKILL.md) | 把这个仓库的「绿」写成 `CONSTRAINTS.md`（命令 + 底线），并在声称通过前核对这次 diff 有没有放松它 | 仓库没有成文质量门时；要跑构建 / 测试 / 静态检查时；想改测试或阈值让它变绿时 |
-| [code-review](code-review/SKILL.md) | 对一次改动按固定点做两个维度的评审：Standards（是否合规范）与 Spec（是否符合意图），各跑一个并行子代理 | 评审分支、PR、进行中的改动，或「从 X 起评审」 |
+| [code-review](code-review/SKILL.md) | 对一次改动按固定点做评审：Standards（是否合规范）、Spec（是否符合意图，简单改动可省）与质审（代码质量与风险）三条线按深度取舍，各配一个并行子代理，发现按 CRITICAL→INFO 分档 | 评审分支、PR、进行中的改动，或「从 X 起评审」 |
 | [tdd](tdd/SKILL.md) | 红 → 绿循环的参考：什么算值得留下的测试、放哪里、有哪些反模式；重构另走独立任务；与 `ponytail` 的分工：它定验证规模、`tdd` 定红→绿节奏 | 想测试先行构建功能或修 bug，提到 "red-green" 时 |
 | [debugging](debugging/SKILL.md) | 先找根因，后谈修复；症状消失不等于问题解决 | 遇到报错、测试失败、行为不符预期，在提出任何修复之前 |
 | [domain-modeling](domain-modeling/SKILL.md) | 主动构建并打磨项目的领域模型，维护 `CONTEXT.md` 与 ADR | 讨论代码库术语、记录或修改 ADR 时 |

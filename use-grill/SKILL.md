@@ -58,12 +58,24 @@ description: 任何要动手改代码的工作开始前使用：先定档（试�
 
 ## 写代码前的加载
 
-两个配套技能影响的东西不同，加载时机也不同；都只加载一次。
+三个配套技能影响的东西不同，加载时机也不同；都只加载一次。
 
 | 技能 | 什么时候加载 | 判据 |
 |---|---|---|
-| `spring-boot-conventions` | 定档后、写短设计（局部）或设计文档（架构）之前 | 仓库有 Spring Boot（`@SpringBootApplication`、`spring-boot-starter-*`），且这次改动碰后端代码：Controller / Endpoint / Service / Use Case / Repository / Mapper / Entity / DTO / VO / Client，或要拆的大方法、大类 |
+| `codebase-design` | 定档后、写短设计（局部）或设计文档（架构）之前，**先于** `spring-boot-conventions` | 这次改动动**结构**：新子系统、新包、拆分或合并类、定新接口、接缝搬家，或要回答「这东西该不该存在 / 接口该多深」。它给词，下一条给落点 |
+| `spring-boot-conventions` | 同上，紧跟其后 | 仓库有 Spring Boot（`@SpringBootApplication`、`spring-boot-starter-*`），且这次改动碰后端代码：Controller / Endpoint / Service / Use Case / Repository / Mapper / Entity / DTO / VO / Client，或要拆的大方法、大类 |
 | `ponytail` | 进入实现之前（局部第 5 步、架构 `implement` 之前） | 这次要留下代码。试验档不加载：它的产出是一次性答案 |
+
+要不要两个一起加载，看这次动的是什么：
+
+| 这次改什么 | `codebase-design` | `spring-boot-conventions` |
+|---|---|---|
+| 新子系统 / 新包 / 拆分合并类 / 定新接口 / 接缝搬家 | 载，先 | 载，后（仅 Java 项目） |
+| 新增用例，职责位置已经定 | 接口形状要定才载 | 载 |
+| 改 bug、改字段、补一个判断 | 不载 | 不载，除非碰到分层、事务、日志 |
+| 非 Java 项目的结构改动 | 载 | 不载 |
+
+这两份都是**判断依据**，不是实现素材：写到一半才补载，只会给已经写出来的代码找理由。要在写设计之前载。
 
 拿不准后端判定时，先读 `pom.xml` / `build.gradle` 和包布局；判定的结论，局部档写进短设计，架构档写进计划文件。
 
@@ -86,13 +98,13 @@ description: 任何要动手改代码的工作开始前使用：先定档（试�
 ### 局部
 1. 只读够判断的上下文
 2. 用 `grilling` 问**真正要紧的**那几题（一轮就够，不必问到最后没有可问的问题）
-3. 碰后端就先按「写代码前的加载」加载 `spring-boot-conventions`；然后在**对话里**给一段短设计：怎么做、碰哪儿、怎么验证
+3. 按「写代码前的加载」加载对应技能（动结构就先载 `codebase-design`，碰后端再载 `spring-boot-conventions`）；然后在**对话里**给一段短设计：怎么做、碰哪儿、怎么验证
 4. **停下来，等明确的「同意」**——把设计说出来和动手做，不能是同一句话
 5. 进入实现前按「写代码前的加载」加载 `ponytail`，然后直接实现（`tdd` 照用）。分工：`ponytail` 决定验证写不写、写多大（平凡免测、非平凡至少一个可运行检查），`tdd` 决定需要验证时的红→绿节奏（见 `tdd` 的「与 `ponytail` 的分工」）；免测不等于跳过验证，交付前仍过 `verification`。不写文档，不写计划
 6. 交付前过 `verification`
 
 ### 架构
-1. 只读现有的 `CONTEXT.md`、ADR 和代码；可用 `codebase-design` 的词汇分析，但不修改任何文件
+1. 只读现有的 `CONTEXT.md`、ADR 和代码；按「写代码前的加载」加载 `codebase-design` 取词汇（模块、深度、接缝、删除检验），用它分析现状与目标形态，但不修改任何文件
 2. `grilling`——问到没有可问的问题
 3. 碰后端就先按「写代码前的加载」加载 `spring-boot-conventions`；然后在对话里总结谈定的意图、边界和准备产出的文档
 4. **关卡 1：停下来等用户明确批准开工**
@@ -152,5 +164,6 @@ description: 任何要动手改代码的工作开始前使用：先定档（试�
 | 「刚才批准过，后面的改动顺带算批过了」 | 每个任务各自定档、各自批准 |
 | 「只是查个 bug / 评审一下」 | 走 `debugging` / `code-review`，别启动这条链 |
 | 「配套技能等 implement 时再载」 | 局部档不经过 implement，会漏掉；按「写代码前的加载」提前载 |
+| 「写代码时把设计那两份都载上，省得漏」 | 它们是判断依据，不是实现素材；写到一半才读，只会给已写的代码找理由。按上面的矩阵，动结构才载 |
 | 「ponytail 载早了，设计也按三行说」 | ponytail 只管写多少；短设计、关卡和收尾报告不受它压缩 |
 | 「discuss-mode 没装，这次先跳过」 | 前置依赖缺失要报出来，不是默默降级 |

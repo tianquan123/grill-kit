@@ -69,7 +69,7 @@ cp -r grill-kit/{use-grill,grilling,discuss-mode,to-spec,to-plan,implement,ponyt
 【打开讨论模式】本次会话按结论先行、取舍讲透、不写安抚语输出；说 normal mode 关闭。
 ```
 
-技能既可以被模型按 `description` 自动选中，也可以由别的技能显式加载——`use-grill` 会按关卡依次加载 `discuss-mode`、`to-spec`、`to-plan`、`implement`，写代码前再加载 `ponytail`，后端任务还会加载 `spring-boot-conventions`。哪一步必须停下来等人，由 `use-grill` 的关卡决定，而不是靠技能本身拒绝加载。
+技能既可以被模型按 `description` 自动选中，也可以由别的技能显式加载——`use-grill` 会按关卡依次加载 `discuss-mode`、`to-spec`、`to-plan`、`implement`，写代码前再加载 `ponytail`；动结构的改动先加载 `codebase-design` 取词汇，后端任务再加载 `spring-boot-conventions` 取落点。哪一步必须停下来等人，由 `use-grill` 的关卡决定，而不是靠技能本身拒绝加载。
 
 ## 技能一览
 
@@ -86,12 +86,12 @@ cp -r grill-kit/{use-grill,grilling,discuss-mode,to-spec,to-plan,implement,ponyt
 | [tdd](tdd/SKILL.md) | 红 → 绿循环的参考：什么算值得留下的测试、放哪里、有哪些反模式；重构另走独立任务；与 `ponytail` 的分工：它定验证规模、`tdd` 定红→绿节奏 | 想测试先行构建功能或修 bug，提到 "red-green" 时 |
 | [debugging](debugging/SKILL.md) | 先找根因，后谈修复；症状消失不等于问题解决 | 遇到报错、测试失败、行为不符预期，在提出任何修复之前 |
 | [domain-modeling](domain-modeling/SKILL.md) | 主动构建并打磨项目的领域模型，维护 `CONTEXT.md` 与 ADR | 讨论代码库术语、记录或修改 ADR 时 |
-| [codebase-design](codebase-design/SKILL.md) | 深模块（接口小、内部实现多）的设计词汇：找准接缝（可替换的边界），小接口藏大行为 | 设计或改进模块接口、寻找深化机会时 |
+| [codebase-design](codebase-design/SKILL.md) | 重构与深模块（接口小、内部实现多）的共享词汇：模块、接口、深度、接缝、适配器、删除检验；小接口藏大行为 | 重构代码或项目、拆分或合并模块、重新设计接口时 |
 | [spring-boot-conventions](spring-boot-conventions/SKILL.md) | Spring Boot 后端的职责归属、分层与拆分：先读邻居，再判断 Controller / Service / 持久层 / Client 的放置位置；写路径默认分步编排、读路径由 QueryService 取数并组装 VO | 新增或修改 Spring Boot 后端代码时；`use-grill` 在写设计前按项目情况加载 |
 | [ponytail](ponytail/SKILL.md) | 极简实现：按「需不需要做 → 已有 → 标准库 → 平台原生 → 已装依赖 → 一行」的顺序逐级判断，只写能跑通的最少代码 | 要写代码时；`use-grill` 在进入实现前加载（试验档除外） |
 | [discuss-mode](discuss-mode/SKILL.md) | 讨论与汇报的输出协议：结论先行、事实/推断分清、方案给取舍、风险直说、只留有用的信息 | 想砍掉填充、客套和跑题时；说 `/discuss-mode` 开启（模式开关） |
 
-`tdd` / `debugging` / `domain-modeling` / `codebase-design` 是配套技能，在对应环节被主链调用，也可以单独使用；`spring-boot-conventions` 同理，由 `use-grill` 在写设计前按项目情况加载。`ponytail` 也是配套技能，由 `use-grill` 在进入实现前加载（试验档除外）。
+`tdd` / `debugging` / `domain-modeling` / `codebase-design` 是配套技能，在对应环节被主链调用，也可以单独使用；`spring-boot-conventions` 同理，由 `use-grill` 在写设计前按项目情况加载；它与 `codebase-design` 共用一套词汇——后者给术语与原则，前者给 Spring 落点与判据，并在文中指回后者。两者要不要同时加载，看这次动的是不是**结构**（矩阵见 `use-grill` 的「写代码前的加载」）。`ponytail` 也是配套技能，由 `use-grill` 在进入实现前加载（试验档除外）。
 
 ## 范围外（刻意不做）
 
